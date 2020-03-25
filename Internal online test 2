@@ -1,0 +1,320 @@
+ 1. 1. sizeof (object size information)
+    2.typeid (object type information)
+    3.static_cast 
+    4.dot operator(.)
+    
+
+2. Error in compiling 
+
+
+3. If virtual keyword is not used then the child class will get two copies of data members from parent class.
+    This type of inheritance is very ambiguous.
+
+    The problem that arises when using multipath inheritance refers to a derived class having more than one
+    parent class that  defines property or methods with the same name. 
+    
+
+4. class class_name
+   {    
+   visibility mode: 
+         virtual void fun_name()=0;  
+   };
+   
+    
+5. catch(…) is used to catch all types of exceptions arising in the program.  
+
+
+                                                PART-B
+                                                ------
+                                                
+6.    Overloading binary arthematic operator
+     #include<iostream.h>
+     #include<conio.h>
+
+    class complex {
+    int a, b;
+public:
+
+    void getvalue() {
+        cout << "Enter the value of Complex Numbers a,b:";
+        cin >> a>>b;
+    }
+
+    complex operator+(complex ob) {
+        complex t;
+        t.a = a + ob.a;
+        t.b = b + ob.b;
+        return (t);
+    }
+
+    complex operator-(complex ob) {
+        complex t;
+        t.a = a - ob.a;
+        t.b = b - ob.b;
+        return (t);
+    }
+
+    void display() {
+        cout << a << "+" << b << "i" << "\n";
+    }
+};
+
+    void main() {
+    clrscr();
+    complex obj1, obj2, result, result1;
+
+    obj1.getvalue();
+    obj2.getvalue();
+
+    result = obj1 + obj2;
+    result1 = obj1 - obj2;
+
+    cout << "Input Values:\n";
+    obj1.display();
+    obj2.display();
+
+    cout << "Result:";
+    result.display();
+    result1.display();
+
+    getch();
+}
+
+
+
+7. Function overloading is a feature in C++ where two or more functions can have the same name
+    but different parameters.Function overloading can be considered as an example of
+    polymorphism feature in C++.
+
+    Example for function overloading:
+
+    #include <iostream> 
+    using namespace std; 
+  
+  void print(int i) { 
+  cout << " Here is int " << i << endl; 
+} 
+  void print(double  f) { 
+  cout << " Here is float " << f << endl; 
+} 
+  void print(char const *c) { 
+  cout << " Here is char* " << c << endl; 
+} 
+  
+  int main() { 
+  print(10); 
+  print(10.10); 
+  print("ten"); 
+  return 0; 
+}       
+ 
+  Overriding resolved :
+ 
+   By specifying final keyword to the method you can avoid overriding
+   in a subcalss. Similarlly one can use final at class level to
+   prevent creating subclasses.
+   
+   
+
+8. 
+   Base class constructors are always called in the derived class constructors. Whenever you create derived class object, 
+   first the base class default constructor is executed and then the derived class's constructor finishes execution.
+   1. Whether derived class's default constructor is called or parameterised is called, base class's default constructor is always
+      called inside them.
+   2. To call base class's parameterised constructor inside derived class's parameterised constructor, we must mention it explicitly
+      while declaring derived class's parameterized constructor.
+
+Program:
+  class Base
+  {
+    int x;
+    public:
+    Base(int i)
+     {
+        x = i;
+        cout << "Base Parameterized Constructor\n";
+      }
+  };
+  class Derived : public Base 
+  {
+    int y;
+    public:
+    Derived(int j):Base(j)
+    {
+       y = j;
+       cout << "Derived Parameterized Constructor\n";
+    }
+  };
+  int main()
+  {
+    Derived d(10);
+  }
+  
+  
+
+9. Runtime polymorphism is also known as dynamic polymorphism or late binding.
+    In runtime polymorphism, the function call is resolved at run time. In contrast, to compile time or static polymorphism,
+    the compiler deduces the object at run time and then decides which function call to bind to the object.
+    In C++, runtime polymorphism is implemented using method overriding.
+    
+    Example:
+
+    #include <iostream>
+    using namespace std;
+    class Base
+{
+   public:
+   void show_val()
+   {
+      cout << "Class::Base"<<endl;
+   }
+};
+   class Derived:public Base
+{
+   public:
+   void show_val() //function overridden from base
+   {
+      cout << "Class::Derived"<<endl;
+   }
+};
+   int main()
+{
+   Base b;
+   Derived d;
+   b.show_val();
+   d.show_val();
+}
+
+
+
+10. #include<iostream.h>
+     #include<conio.h>
+     void main()
+{
+     int a,b,c;
+     float d;
+     clrscr();
+     cout<<"Enter the value of a:";
+     cin>>a;
+     cout<<"Enter the value of b:";
+     cin>>b;
+     cout<<"Enter the value of c:";
+     cin>>c;
+
+     try
+{
+     if((a-b)!=0)
+{
+     d=c/(a-b);
+     cout<<"Result is:"<<d;
+}
+     else
+{
+     throw(a-b);
+}
+}
+
+     catch(int i)
+{
+     cout<<"Answer is infinite because a-b is:"<<i;
+}
+
+     getch();
+}   
+
+
+
+                                                PART-C
+                                                ------
+                                                
+  11.   #include<iostream>
+using namespace std;
+class football
+{
+    char name[30];
+    float height,weight;
+    public:
+    void get()
+    {
+        cout<<"Enter name:"<<"\n";
+        cin>>name;
+        cout<<"Enter height in metres:"<<"\n";
+        cin>>height;
+        cout<<"Enter weight in kilogram:"<<"\n";
+        cin>>weight;
+    }
+    void print()
+    {
+        cout<<"Name:"<<name<<"\n";
+        cout<<"Height:"<<height<<"\n";
+        cout<<"Weight:"<<weight<<"\n";
+    }
+};
+class cricket:public football
+{
+    public:
+    void get()
+    {
+        football::get();
+    }
+    void print()
+    {
+        football::print();
+    }
+};
+class volleyball:public cricket
+{
+    public:
+    void get()
+    {
+        cricket::get();
+    }
+    void print()
+    {
+        cricket::print();
+    }
+};
+int main()
+{
+    int game,n,i;
+    cout<<"Enter the number if football-1/cricket-2/volleyball-3\n";
+    cin>>game;
+    switch(game)
+    {
+        case 1:
+        football f[100];
+        cout<<"Enter the number of players"<<"\n";
+        cin>>n;
+        cout<<"Enter details of "<<n<<" players\n";
+        for(i=0;i<n;i++)
+        {
+            f[i].get();
+            f[i].print();
+        }
+        break;
+        case 2:
+        cricket c[100];
+        cout<<"Enter the number of players"<<"\n";
+        cin>>n;
+        cout<<"Enter details of "<<n<<" players\n";
+        for(i=0;i<n;i++)
+        {
+            c[i].get();
+            c[i].print();
+        }
+        break;
+        case 3:
+        volleyball v[100];
+        cout<<"Enter the number of players"<<"\n";
+        cin>>n;
+        cout<<"Enter details of "<<n<<" players\n";
+        for(i=0;i<n;i++)
+        {
+            v[i].get();
+            v[i].print();
+        }
+        break;
+        default: cout<<"Enter correct number\n";
+    }
+}                                           
+                                              
