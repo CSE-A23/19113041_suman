@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+void main()
+{
+    char input[50];
+    int check=0,w=0,s=0,l=0,i=0,j=0,n=0,c[10];
+    printf("Enter a Sentence\n");
+    scanf("%s",input);
+    l=strlen(input);
+    for(i=n; i<l; i++)
+    {
+        w+=input[i];
+        if(input[i]==' ')
+        {
+            c[j]=w-32;
+            w=0;
+            n=i;
+            j++;
+            s++;
+        }
+    }
+    c[j]=w;
+    for(i=0; i<=s-1; i++)
+    {
+        if(c[i]>c[i+1])
+        {
+            check=1;
+        }
+    }
+    if(check==1)
+    {
+        printf("NOPE\n");
+    }
+    else
+    {
+        printf("WAS\n");
+    }
